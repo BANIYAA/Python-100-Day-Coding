@@ -1,0 +1,114 @@
+import random
+word_list=["camel","lion","tiger","cow","rat","dog","cat"]
+
+print(''' _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/  ''')
+
+stages = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
+chosen=""+random.choice(word_list)
+print(chosen)
+
+print("Welcome to the Hangman")
+game_over=False
+length=len(chosen)
+stro=""
+for i in range(0,length):
+    stro +="_"
+print(stro)
+lives=6
+letters=[]
+count=0
+
+while not game_over :
+    
+    print(stages[count])
+    guess=input("enter your choice").lower()
+    disp=""
+    for i in chosen:
+        if guess == i:
+            disp +=guess
+            letters.append(i)
+            
+        elif i in letters:
+            disp +=i
+               
+        else:
+            disp +="_"
+    
+    print(disp)
+    
+    if guess in letters:
+        print("You have already chosen this letter")
+    
+    
+    if guess not in chosen:
+        count +=1
+        lives -=1
+        if lives==0:
+            game_over=True
+            print("Game over! You lose")
+        
+        
+    print(f"You have {lives} lives left\n")
+    if "_" not in disp:
+        game_over=True
+        print("Game over! You Won")
+    
+    
+    
