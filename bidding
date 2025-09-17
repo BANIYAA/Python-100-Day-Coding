@@ -1,0 +1,43 @@
+print(''' 
+           ___________
+           \         /
+            )_______(
+            |"""""""|_.-._,.---------.,_.-._
+            |       | | |               | | ''-.
+            |       |_| |_             _| |_..-'
+            |_______| '-' `'---------'` '-'
+            )"""""""(
+           |_________|
+           `'-------'`
+         .-------------.
+        /_______________\  \n''')
+
+add_member=True
+dict={}
+
+def highest_bidder(bids):
+    max_bid=0
+    winner=""
+    for bidder in bids:
+        if bids[bidder]>max_bid:
+            max_bid=bids[bidder]
+            winner=bidder
+    print(f"Winner is {winner} with the highest bid of ${max_bid}")
+        
+        
+    
+    
+while add_member==True:
+    name=input("What is your name?\n")
+    bid=int(input("What is your bid in $\t"))
+    dict[name]=bid
+    extra=input("Type YES if there are any bidders else NO\n").lower()
+    if extra=="yes":
+        print("\n"*20)
+        add_member=True
+    elif extra=="no":
+        add_member=False
+        highest_bidder(dict)
+    
+    else:
+        print("Incorrect input")
