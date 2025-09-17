@@ -1,0 +1,85 @@
+print(''' 
+        _____________________
+        |  _________________  |
+        | | JO           0. | |
+        | |_________________| |
+        |  ___ ___ ___   ___  |
+        | | 7 | 8 | 9 | | + | |
+        | |___|___|___| |___| |
+        | | 4 | 5 | 6 | | - | |
+        | |___|___|___| |___| |
+        | | 1 | 2 | 3 | | x | |
+        | |___|___|___| |___| |
+        | | . | 0 | = | | / | |
+        | |___|___|___| |___| |
+        |_____________________|     
+            
+                        
+          | |          | |     | |            
+  ___ __ _| | ___ _   _| | __ _| |_ ___  _ __ 
+ / __/ _` | |/ __| | | | |/ _` | __/ _ \| '__|
+| (_| (_| | | (__| |_| | | (_| | || (_) | |   
+ \___\__,_|_|\___|\__,_|_|\__,_|\__\___/|_|   
+                                              ''')
+
+
+def add(num1,num2):
+    return num1+num2
+
+def subtract(num1,num2):
+    return num1-num2
+
+def multiply(num1,num2):
+    return num1*num2
+
+def divide(num1,num2):
+    return num1/num2
+
+conti=True
+num1=int(input("Enter first number\n"))
+
+while conti==True:
+    print("'+' for addition")
+    print("'-' for subtraction")
+    print("'*' for multiplication")
+    print("'/' for division")
+    ope=input("Enter operators\t")
+    num2=int(input("Enter second number\n"))
+    
+    if ope=='+':
+        result=add(num1,num2)
+        print(result)
+        num1=result
+        
+    elif ope=='-':
+        result=subtract(num1,num2)
+        print(result)
+        num1=result
+        
+    elif ope=='*':
+        result=multiply(num1,num2)
+        print(result)
+        num1=result
+        
+    elif ope=='/':
+        result=divide(num1,num2)
+        print(result)
+        num1=result
+        
+    else:
+        print("Wrong operand \n")
+    
+    
+    con=""
+    con=input("Enter yes to continue and no to stop\n").lower()
+    
+    if con=="yes":
+        conti=True
+        print("\n "* 20)
+
+    else:
+        conti=False
+    
+
+
+    
