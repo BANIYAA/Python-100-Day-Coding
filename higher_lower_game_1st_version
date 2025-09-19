@@ -1,0 +1,79 @@
+import random
+
+# Game title
+print('''
+88  88 88  dP""b8 88  88 888888 88""Yb     88      dP"Yb  Yb        dP 888888 88""Yb      dP""b8    db    8b    d8 888888 
+88  88 88 dP   `" 88  88 88__   88__dP     88     dP   Yb  Yb  db  dP  88__   88__dP     dP   `"   dPYb   88b  d88 88__   
+888888 88 Yb  "88 888888 88""   88"Yb      88  .o Yb   dP   YbdPYbdP   88""   88"Yb      Yb  "88  dP__Yb  88YbdP88 88""   
+88  88 88  YboodP 88  88 888888 88  Yb     88ood8  YbodP     YP  YP    888888 88  Yb      YboodP dP""""Yb 88 YY 88 888888 
+''')
+
+print("Welcome to the Higher Lower Game !!!\n")
+
+# Game data
+questions = [
+    "youtube", "chatgpt", "facebook", "whatsapp web", "google", "instagram",
+    "translate", "amazon", "gmail", "weather", "cricbuzz", "google translate",
+    "traductor", "clima", "ind vs eng", "restaurants", "canva", "google maps",
+    "hotels", "maps", "restaurants near me", "whatsapp",
+    "india national cricket team vs england cricket team match scorecard",
+    "pak vs india", "real madrid", "sarkari result", "twitter", "hotmail",
+    "nba", "pinterest", "weather tomorrow", "yahoo"
+]
+
+score = 0
+
+# Function to compare choices
+def compare(pop1, pop2, user_choice):
+    global score
+    if (pop1 > pop2 and user_choice == 1) or (pop2 > pop1 and user_choice == 2):
+        score += 1
+        print("✅ Correct choice!")
+        print(f"Your score is: {score}\n")
+        return 1
+    else:
+        print("❌ Wrong choice!")
+        print(f"Final score: {score}\n")
+        return 0
+
+# Main game loop
+while True:
+    # Generate two different random indexes
+    num1, num2 = random.sample(range(len(questions)), 2)
+    
+    # Simulate search popularity
+    pop1 = random.randint(50, 500)  # Popularity score for option 1
+    pop2 = random.randint(50, 500)  # Popularity score for option 2
+
+    print("Which is more searched on Google?\n")
+    print(f"1️⃣ {questions[num1]}")
+    print("""
+    ___      ___ ________      
+    |\\  \\    /  /|\\   ____\\     
+    \\ \\  \\  /  / | \\  \\___|_    
+     \\ \\  \\/  / / \\ \\_____  \\   
+      \\ \\    / /   \\|____|\\  \\  
+       \\ \\__/ /      ____\\_\\  \\ 
+        \\|__|/      |\\_________\
+                    \\|_________|
+    """)
+    print(f"2️⃣ {questions[num2]}\n")
+
+    # Get user input
+    try:
+        choice = int(input("Enter your choice (1 or 2): "))
+        if choice not in [1, 2]:
+            print("⚠️ Invalid choice! Please enter 1 or 2.\n")
+            continue
+    except ValueError:
+        print("⚠️ Please enter a valid number!\n")
+        continue
+
+    # Compare and decide
+    result = compare(pop1, pop2, choice)
+
+    # End game if wrong
+    if result == 0:
+        print("Game Over! Thanks for playing.")
+        break
+1
