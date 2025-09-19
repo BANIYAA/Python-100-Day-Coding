@@ -1,0 +1,60 @@
+print('''                                           88                                 
+                                           88                                 
+                                           88                                 
+8b,dPPYba,  88       88 88,dPYba,,adPYba,  88,dPPYba,   ,adPPYba, 8b,dPPYba,  
+88P'   `"8a 88       88 88P'   "88"    "8a 88P'    "8a a8P_____88 88P'   "Y8  
+88       88 88       88 88      88      88 88       d8 8PP""""""" 88          
+88       88 "8a,   ,a88 88      88      88 88b,   ,a8" "8b,   ,aa 88          
+88       88  `"YbbdP'Y8 88      88      88 8Y"Ybbd8"'   `"Ybbd8"' 88          
+
+                                                       88                          
+                                                       ""                          
+                                                                                   
+ ,adPPYb,d8 88       88  ,adPPYba, ,adPPYba, ,adPPYba, 88 8b,dPPYba,   ,adPPYb,d8  
+a8"    `Y88 88       88 a8P_____88 I8[    "" I8[    "" 88 88P'   `"8a a8"    `Y88  
+8b       88 88       88 8PP"""""""  `"Y8ba,   `"Y8ba,  88 88       88 8b       88  
+"8a,   ,d88 "8a,   ,a88 "8b,   ,aa aa    ]8I aa    ]8I 88 88       88 "8a,   ,d88  
+ `"YbbdP"Y8  `"YbbdP'Y8  `"Ybbd8"' `"YbbdP"' `"YbbdP"' 88 88       88  `"YbbdP"Y8  
+ aa,    ,88                                                            aa,    ,88  
+  "Y8bbdP"                                                              "Y8bbdP"   
+  
+  ''')
+
+import random
+
+def compare(guess,num):
+    if guess == num:
+        print("You guessed it right")
+    elif guess > num:
+        print("You guessed it Too High")
+    else:
+        print("You guessed it Too Low")
+
+def set_difficulty():    
+    level=input("Choose a difficulty Easy,Hard \t").lower()    
+    if level=="easy":
+        return 10
+    elif level=="hard":
+        return 5
+    else:
+        print("Typed wrong input")
+
+def game():
+    print("Welcome to the number guessing game \n")
+    print("I'm thinking of a number between 1 to 100 \n")
+    num=random.randint(1,100)
+
+    turns=set_difficulty()
+    print(f"You have {turns} attempts remaining to guess the number\n")
+    guess=0
+    
+    while guess!= num:
+        guess=int(input("Make a guess !\t\t"))
+        compare(guess,num)
+    
+game()
+
+    
+
+    
+
