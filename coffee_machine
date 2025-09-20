@@ -1,0 +1,80 @@
+print('''                                                                                                                     
+    //   ) )           //  ) ) //  ) )                    /|    //| |                                                    
+   //         ___   __//__  __//__  ___      ___         //|   // | |     ___      ___     / __     ( )   __      ___    
+  //        //   ) ) //      //   //___) ) //___) )     // |  //  | |   //   ) ) //   ) ) //   ) ) / / //   ) ) //___) ) 
+ //        //   / / //      //   //       //           //  | //   | |  //   / / //       //   / / / / //   / / //        
+((____/ / ((___/ / //      //   ((____   ((____       //   |//    | | ((___( ( ((____   //   / / / / //   / / ((____     ''')
+
+print("\n Welcome to the Coffee Machine \n")
+
+#menu of the Coffee Machine
+Menu={"espresso":{"Water":50,"Milk":0,"Coffee":18,"Money":1.5},"latte":{"Water":100,"Milk":200,"Coffee":24,"Money":2.5},"cappuccino":{"Water":250,"Milk":100,"Coffee":24,"Money":3.0}}
+
+resources={"Water":1000,"Milk":500,"Coffee":76,"Money":2.5}
+
+#Coin={"Quarter":0.25,"Penny":0.01,"Nickel":0.05,"Dime":0.1}
+
+def report(data):
+    print(f"Water : {data["Water"]} ml")
+    print(f"Milk : {data["Milk"]} ml")
+    print(f"Coffee : {data["Coffee"]} gm")
+    print(f"Money : $ {data["Money"]}")
+
+def check_material(product):
+    global resources
+    global Menu
+    if Menu[product]["Water"] < resources["Water"]:
+        if Menu[product]["Milk"] < resources["Milk"]:
+            if Menu[product]["Coffee"] < resources["Coffee"]:
+                print(f"Your {product} is in progress \n")
+            else:
+                print("You don't have sufficient Coffee \n")
+                return 0
+        else:
+            print("You don't have sufficient Milk \n")
+            return 0
+    else:
+        print("You don't have sufficient Water \n")     
+        return 0
+        
+def update_resource(product):
+    global resources 
+    global Menu
+    resources["Water"] -=Menu[product]["Water"]
+    resources["Milk"] -=Menu[product]["Milk"]
+    resources["Coffee"] -=Menu[product]["Coffee"]
+    resources["Money"] +=Menu[product]["Money"]
+
+def process_coin(one,five,ten,tw_five,product):
+    global Menu
+    if Menu[product]["Money"]==one*0.01+five*0.05+ten*0.1+tw_five*0.25:
+        print("Sufficient Money inserted\n")
+    elif Menu[product]["Money"] < one*0.01+five*0.05+ten*0.1+tw_five*0.25:
+        print(f"You have inserted ${round((one*0.01+five*0.05+ten*0.1+tw_five*0.25)-Menu[product]["Money"],2)} extra. Money Refunded\n")
+    else:
+        print("Sorry that's not enough money. Money refunded.\n")
+
+turn_On=True
+
+while turn_On==True:
+    product=input("What would you like? (espresso/latte/cappuccino):\t").lower()
+    
+    if product=="off":
+        turn_On=False
+        break
+    elif product=="report":
+        report(resources)
+    elif product=="espresso" or product=="latte" or product=="cappuccino":
+        check_material(product)
+        one=int(input("Enter no of Penny"))
+        five=int(input("Enter no of Nickels"))
+        ten=int(input("Enter no of Dimes"))
+        tw_five=int(input("Enter no of Quartes"))
+
+        process_coin(one,five,ten,tw_five,product)
+        update_resource(product)
+        report(resources)
+        print(f"Here is your {product}. Enjoy!")
+        
+    else:
+        print("Wrong Input Try Again")
